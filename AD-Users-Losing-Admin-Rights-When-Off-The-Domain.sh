@@ -62,7 +62,7 @@ if [[ -z $loggedInUser ]]; then
 fi
 
 # Get the UniqueID of loggedInUser, exit if ID is less than 1000 as presuming it's then a local account
-if [[ $(dscl . -read /Users/"$loggedInUser" | awk '/UniqueID:/{ print $NF}') < 1000 ]]; then
+if [ $(dscl . -read /Users/"$loggedInUser" | awk '/UniqueID:/{ print $NF}') -lt 1000 ]; then
 	# Update EA
 	echo "<result>$loggedInUser: Local Account</result>"
 	# Exit script
